@@ -59,6 +59,7 @@ class User {
     createRequest({
       url: this.URL + '/login',
       method: 'POST',
+      responseType: 'json',
       data,
       callback: (err, response) => {
         if (response && response.user) {
