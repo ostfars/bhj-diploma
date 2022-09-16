@@ -44,7 +44,7 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
-    AccountsWidget.remove({id: 1}, (err, resp) => { // !!!!!!!!!! дописать
+    Account.remove({id: 1}, (err, resp) => { // !!!!!!!!!! дописать
       if (resp && resp.success) {
         App.updateWigets();
         App.updateForms();

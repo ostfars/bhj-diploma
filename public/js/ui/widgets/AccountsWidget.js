@@ -46,7 +46,7 @@ class AccountsWidget {
         this.clear();
         resp.data.forEach(a => this.renderItem(a));
       }
-    })
+    });
   }
 
   /**
@@ -80,7 +80,7 @@ class AccountsWidget {
                     <span>${item.name}</span>
                     <span>${item.sum} ₽</span>
                 </a>
-            </li>`
+            </li>`;
   }
 
   /**

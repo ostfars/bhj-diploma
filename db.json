@@ -5,14 +5,15 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1"
+    },
+    {
+      "name": "qwer",
+      "email": "qwer@qwer",
+      "password": "qwer",
+      "id": "1f8q8f8ccl847qu0a"
     }
   ],
   "accounts": [
-    {
-      "name": "Банк",
-      "user_id": "1",
-      "id": "1"
-    },
     {
       "name": "Магазин",
       "user_id": "1",
@@ -25,33 +26,6 @@
     }
   ],
   "transactions": [
-    {
-      "account_id": "1",
-      "created_at": "2019-09-15 10:24:02",
-      "id": "1",
-      "name": "Кредит",
-      "sum": 5000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
-      "account_id": "1",
-      "created_at": "2019-09-17 15:53:02",
-      "id": "2",
-      "name": "Баланс на дебетовке",
-      "sum": 3200,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "1",
-      "created_at": "2019-09-19 20:12:02",
-      "id": "3",
-      "name": "Копилка",
-      "sum": 1500,
-      "type": "income",
-      "user_id": "1"
-    },
     {
       "account_id": "2",
       "created_at": "2019-09-26 16:23:02",

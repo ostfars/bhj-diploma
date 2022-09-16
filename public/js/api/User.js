@@ -26,8 +26,8 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    const user = localStorage.user;
-    return user ? JSON.parse(user) : undefined;
+     const user = localStorage.user;
+     return user ? JSON.parse(user) : user;
   }
 
   /**
@@ -46,7 +46,7 @@ class User {
         }
         callback(err, response);
       }
-    });
+    })
   }
 
   /**
@@ -59,7 +59,6 @@ class User {
     createRequest({
       url: this.URL + '/login',
       method: 'POST',
-      responseType: 'json',
       data,
       callback: (err, response) => {
         if (response && response.user) {
@@ -87,7 +86,7 @@ class User {
         }
         callback(err, response);
       }
-    })
+    });
   }
 
   /**
@@ -99,11 +98,11 @@ class User {
       url: this.URL + '/logout',
       method: 'POST',
       callback: (err, response) => {
-        if (response && response.success) {
+        if (response && response.user) {
           this.unsetCurrent();
         }
         callback(err, response);
       }
-    })
+    });
   }
 }

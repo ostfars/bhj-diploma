@@ -3,7 +3,7 @@
  * кнопки скрытия/показа колонки в мобильной версии сайта
  * и за кнопки меню
  * */
-class Sidebar {
+ class Sidebar {
   /**
    * Запускает initAuthLinks и initToggleButton
    * */
@@ -18,11 +18,11 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
-    // const sidebarButton = document.querySelector('.sidebar-toggle');
-    // sidebarButton.addEventListener('click', e => {
-    //   e.preventDefault();
-    //   document.querySelector('body').classList.toggle('sidebar-open sidebar-collapse');
-    // });
+    document.querySelector('.sidebar-toggle').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelector('body').classList.toggle('sidebar-open')
+      document.querySelector('body').classList.toggle('sidebar-collapse')
+    });
   }
 
   /**
@@ -33,18 +33,24 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-    document.querySelector('.menu-item_login').onclick = e => {
+    
+    document.querySelector('.menu-item_register > a').onclick = e => {
+      e.preventDefault();
+      App.getModal('register').open();
+    };    
+    
+    document.querySelector('.menu-item_login > a').onclick = e => {
       e.preventDefault();
       App.getModal('login').open();
     };
 
-    // document.querySelector('.menu-item_login > a').onclick = e=> {
-    //   e.preventDefault();
-    //   User.logout((err,resp) => {
-    //     if (resp && resp.success) {
-    //       App.setState('init');
-    //     }
-    //   });
-    // };
+    document.querySelector('.menu-item_logout > a').onclick = e => {
+      e.preventDefault();
+      User.logout((err, resp) => {
+        if (resp && resp.success) {
+          App.setState('init');
+        }
+      })
+    };
   }
-} 
+}
