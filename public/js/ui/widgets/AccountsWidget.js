@@ -29,13 +29,15 @@ class AccountsWidget {
   registerEvents() {
     document.querySelector('.create-account').addEventListener('click', () => App.getModal('createAccount').open());
 
-    // const accounts = document.querySelectorAll('.account > a');
-    // accounts.forEach(element => {
-    //   element.addEventListener('click', event => {
-    //     event.preventDefault();
-    //     this.onSelectAccount();
-    //   })
-    // })
+    document.querySelectorAll('.accounts-panel').forEach(item => {
+      item.addEventListener('click', event => {
+        if(event.target.closest('.account')) {
+          event.preventDefault();
+           this.onSelectAccount(event.target.closest('.account'));
+        }
+      })
+    })
+
   }
 
   /**
@@ -74,7 +76,12 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
-
+    document.querySelectorAll('.account').forEach(item => {
+      item.classList.remove('active');
+      element.classList.add('active');
+    });
+    
+    App.showPage( 'transactions', {account_id: element.dataset.id});
   }
 
   /**
