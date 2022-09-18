@@ -23,6 +23,26 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "credit",
+      "user_id": "1",
+      "id": "1f8q8f3gnl87a15nt"
+    },
+    {
+      "name": "новый",
+      "user_id": "1",
+      "id": "1f8q8f3mul87a4dil"
+    },
+    {
+      "name": "еще новый",
+      "user_id": "1",
+      "id": "1f8q8f3pcl87a6iv2"
+    },
+    {
+      "name": "Самый новый",
+      "user_id": "1",
+      "id": "1f8q8f3pcl87at2h2"
     }
   ],
   "transactions": [

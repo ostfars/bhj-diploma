@@ -70,7 +70,7 @@ class TransactionsPage {
    * в TransactionsPage.renderTransactions()
    * */
   render(options){
-    AccountsWidget.get(options.account_id, (err, resp) => {
+    Account.get(options.account_id, (err, resp) => {
       if (resp) {
         this.renderTitle(resp.data.name);
       }

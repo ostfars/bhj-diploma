@@ -27,7 +27,15 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
+    document.querySelector('.create-account').addEventListener('click', () => App.getModal('createAccount').open());
 
+    // const accounts = document.querySelectorAll('.account > a');
+    // accounts.forEach(element => {
+    //   element.addEventListener('click', event => {
+    //     event.preventDefault();
+    //     this.onSelectAccount();
+    //   })
+    // })
   }
 
   /**
