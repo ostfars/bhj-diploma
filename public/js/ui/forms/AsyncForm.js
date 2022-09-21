@@ -13,6 +13,7 @@
    * через registerEvents()
    * */
   constructor(element) {
+    if(!element) throw new Error('Форма не найдена');
     this.element = element;
     this.registerEvents();
   }

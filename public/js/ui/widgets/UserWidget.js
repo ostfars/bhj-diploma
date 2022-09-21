@@ -12,7 +12,7 @@ class UserWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor(element) {
-    if (element === undefined) throw "Что-то пошло не так";
+    if (!element) throw new Error ("Пользователь не найден");
 
     this.element = element;
   }

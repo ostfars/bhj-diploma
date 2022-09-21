@@ -18,7 +18,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('user');    
   }
 
   /**
@@ -98,7 +98,7 @@ class User {
       url: this.URL + '/logout',
       method: 'POST',
       callback: (err, response) => {
-        if (response && response.user) {
+        if (response) {
           this.unsetCurrent();
         }
         callback(err, response);

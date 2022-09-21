@@ -3,7 +3,7 @@
  * страницей отображения доходов и
  * расходов конкретного счёта
  * */
-class TransactionsPage {
+ class TransactionsPage {
   /**
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
@@ -11,6 +11,7 @@ class TransactionsPage {
    * через registerEvents()
    * */
   constructor( element ) {
+    if (!element) throw new Error ("Элемент не найден");
     this.element = element;
     this.registerEvents();
   }
@@ -33,7 +34,7 @@ class TransactionsPage {
       this.removeAccount();
     }
 
-    document.querySelectorAll('.content').forEach(element => {              //удаляем транзакцию
+    document.querySelectorAll('.content').forEach(element => {
       element.addEventListener('click', event => {
         if(event.target.closest('.transaction__remove')) {
             event.preventDefault();
@@ -62,7 +63,7 @@ class TransactionsPage {
               App.updateForms();
               this.clear();
             }
-          })
+          });
         }
       }
     })
@@ -92,7 +93,7 @@ class TransactionsPage {
    * */
   render(options){
     if (options) {
-      this.details = options;
+      this.lastOptions = options;
 
       Account.get(options.account_id, (err, resp) => {
         if (resp) {
@@ -133,7 +134,7 @@ class TransactionsPage {
     const months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря']
       let transactionDate = new Date(date);
     
-      return `${transactionDate.getDate()} ${monthString[transactionDate.getMonth()]}  ${transactionDate.getFullYear()} г. в ${transactionDate.toISOString().slice(11,16)}`
+      return `${transactionDate.getDate()} ${months[transactionDate.getMonth()]}  ${transactionDate.getFullYear()} г. в ${transactionDate.toISOString().slice(11,16)}`
   }
 
   /**
@@ -141,7 +142,42 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item){
-    
+    let transactionType = null;
+
+    if (item) {
+      if (item.type === 'income') {
+        transactionType = 'transaction_income'
+      }
+
+      if (item.type === 'expense') {
+        transactionType = 'transaction_expense'
+      }
+    }
+
+    return `<div class="transaction ${transactionType} row">
+      <div class="col-md-7 transaction__details">
+        <div class="transaction__icon">
+            <span class="fa fa-money fa-2x"></span>
+        </div>
+        <div class="transaction__info">
+            <h4 class="transaction__title">${item.name}</h4>
+            <!-- дата -->
+            <div class="transaction__date">${this.formatDate(item.created_at)}</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="transaction__summ">
+        <!--  сумма -->
+            ${item.sum} <span class="currency">₽</span>
+        </div>
+      </div>
+      <div class="col-md-2 transaction__controls">
+          <!-- в data-id нужно поместить id -->
+          <button class="btn btn-danger transaction__remove" data-id=${item.id}>
+              <i class="fa fa-trash"></i>  
+          </button>
+      </div>
+    </div>`
   }
 
   /**
@@ -149,6 +185,12 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
+    if (data) {
+      document.querySelectorAll('.transaction').forEach(item => item.remove());
 
+      data.forEach((item) => {
+        document.querySelector('.content').insertAdjacentHTML('beforeend', this.getTransactionHTML(item));
+      })
+    }
   }
 }
